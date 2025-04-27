@@ -26,6 +26,16 @@ namespace LordCardShop.Repositories
             return db.Carts.FirstOrDefault(c => c.CartID == cartId);
         }
 
+        public static Cart GetCartByUserAndCard(int userId, int cardId)
+        {
+            return db.Carts.FirstOrDefault(c => c.UserID == userId && c.CardID == cardId);
+        }
+
+        public static List<Cart> GetCartByUserId(int userId)
+        {
+            return db.Carts.Where(c => c.UserID == userId).ToList();
+        }
+
         public static void UpdateCart(Cart updatedCart)
         {
             Cart existingCart = db.Carts.FirstOrDefault(c => c.CartID == updatedCart.CartID);
@@ -39,6 +49,16 @@ namespace LordCardShop.Repositories
             }
         }
 
+        public static void UpdateCartQuantity(int cartId, int cardId, int quantity)
+        {
+            Cart cart = db.Carts.FirstOrDefault(c => c.CartID == cartId && c.CardID == cardId);
+            if (cart != null)
+            {
+                cart.Quantity = quantity;
+                db.SaveChanges();
+            }
+        }
+
         public static void DeleteCart(int cartId)
         {
             Cart cart = db.Carts.FirstOrDefault(c => c.CartID == cartId);
@@ -46,6 +66,21 @@ namespace LordCardShop.Repositories
             {
                 db.Carts.Remove(cart);
                 db.SaveChanges();
+            }
+        }
+
+        public static bool ClearCartByUserId(int userId)
+        {
+            try
+            {
+                List<Cart> carts = db.Carts.Where(c => c.UserID == userId).ToList();
+                db.Carts.RemoveRange(carts);
+                db.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

@@ -26,6 +26,11 @@ namespace LordCardShop.Repositories
             return db.TransactionDetails.FirstOrDefault(td => td.TransactionID == transactionId && td.CardID == cardId);
         }
 
+        public static List<TransactionDetail> GetTransactionDetailsById(int transactionId)
+        {
+            return db.TransactionDetails.Where(td => td.TransactionID == transactionId).ToList();
+        }
+
         public static void UpdateTransactionDetail(TransactionDetail updatedDetail)
         {
             TransactionDetail existingDetail = db.TransactionDetails.FirstOrDefault(td => td.TransactionID == updatedDetail.TransactionID && td.CardID == updatedDetail.CardID);

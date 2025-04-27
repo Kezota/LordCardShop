@@ -26,6 +26,18 @@ namespace LordCardShop.Repositories
             return db.Cards.FirstOrDefault(c => c.CardID == cardId);
         }
 
+        public static List<Card> GetCardByName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return new List<Card>();
+            }
+
+            return db.Cards
+                .Where(c => c.CardName.ToLower().Contains(name.ToLower()))
+                .ToList();
+        }
+
         public static void UpdateCard(Card updatedCard)
         {
             Card existingCard = db.Cards.FirstOrDefault(c => c.CardID == updatedCard.CardID);
@@ -40,7 +52,16 @@ namespace LordCardShop.Repositories
             }
         }
 
-        public static void DeleteCard(int cardId)
+        public static void DeleteCard(Card card)
+        {
+            if (card != null)
+            {
+                db.Cards.Remove(card);
+                db.SaveChanges();
+            }
+        }
+
+        public static void DeleteCardById(int cardId)
         {
             Card card = db.Cards.FirstOrDefault(c => c.CardID == cardId);
             if (card != null)

@@ -26,6 +26,11 @@ namespace LordCardShop.Repositories
             return db.Users.FirstOrDefault(u => u.UserID == userId);
         }
 
+        public static User GetUserByUsername(string username)
+        {
+            return db.Users.FirstOrDefault(u => u.UserName == username);
+        }
+
         public static void UpdateUser(User updatedUser)
         {
             User existingUser = db.Users.FirstOrDefault(u => u.UserID == updatedUser.UserID);

@@ -92,11 +92,25 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Factories\CardFactory.cs" />
     <Compile Include="Factories\CartFactory.cs" />
     <Compile Include="Factories\TransactionDetailFactory.cs" />
     <Compile Include="Factories\TransactionHeaderFactory.cs" />
     <Compile Include="Factories\UserFactory.cs" />
+    <Compile Include="Handlers\AuthHandler.cs" />
+    <Compile Include="Handlers\CardHandler.cs" />
+    <Compile Include="Handlers\CartHandler.cs" />
+    <Compile Include="Handlers\ManageCardHandler.cs" />
+    <Compile Include="Handlers\NavigationHandler.cs" />
+    <Compile Include="Handlers\SessionHandler.cs" />
+    <Compile Include="Handlers\TransactionHandler.cs" />
+    <Compile Include="Handlers\UserHandler.cs" />
+    <Compile Include="Helpers\CookieHelper.cs" />
+    <Compile Include="Helpers\PasswordHelper.cs" />
+    <Compile Include="Helpers\SessionHelper.cs" />
+    <Compile Include="Helpers\ValidateHelper.cs" />
     <Compile Include="Model\Card.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

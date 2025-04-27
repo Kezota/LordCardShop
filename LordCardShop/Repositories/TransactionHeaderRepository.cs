@@ -10,10 +10,19 @@ namespace LordCardShop.Repositories
     {
         private static DatabaseEntities db = new DatabaseEntities();
 
-        public static void AddTransactionHeader(TransactionHeader header)
+        public static int AddTransactionHeader(TransactionHeader header)
         {
-            db.TransactionHeaders.Add(header);
-            db.SaveChanges();
+            try
+            {
+                db.TransactionHeaders.Add(header);
+                db.SaveChanges();
+
+                return header.TransactionID;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding transaction header: " + ex.Message);
+            }
         }
 
         public static List<TransactionHeader> GetAllTransactionHeaders()
@@ -24,6 +33,11 @@ namespace LordCardShop.Repositories
         public static TransactionHeader GetTransactionHeaderById(int transactionId)
         {
             return db.TransactionHeaders.FirstOrDefault(t => t.TransactionID == transactionId);
+        }
+
+        public static List<TransactionHeader> GetTransactionByCustomerId(int customerId)
+        {
+            return db.TransactionHeaders.Where(t => t.CustomerID == customerId).ToList();
         }
 
         public static void UpdateTransactionHeader(TransactionHeader updatedHeader)

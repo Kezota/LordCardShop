@@ -8,13 +8,14 @@ namespace LordCardShop.Factories
 {
     public class CardFactory
     {
-        public static Card CreateCard(string cardName, float cardPrice, string cardType, byte[] isFoil, int? cardID = null)
+        public static Card CreateCard(string cardName, float cardPrice, string cardType, string cardDesc, byte[] isFoil, int? cardID = null)
         {
             var card = new Card
             {
                 CardName = cardName,
                 CardPrice = cardPrice,
                 CardType = cardType,
+                CardDesc = cardDesc,
                 IsFoil = isFoil
             };
 

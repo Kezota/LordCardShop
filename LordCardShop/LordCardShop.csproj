@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Factories\CardFactory.cs" />
     <Compile Include="Factories\CartFactory.cs" />

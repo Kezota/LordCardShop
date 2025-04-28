@@ -11,9 +11,9 @@ using System.Web;
 
 namespace LordCardShop.Handlers
 {
-    public class AuthHandler
+    public static class AuthHandler
     {
-        public (bool success, string errorMessage) LoginHandler(string username, string password, bool rememberMe)
+        public static (bool success, string errorMessage) Login(string username, string password, bool rememberMe)
         {
             var user = UserRepository.GetUserByUsername(username); 
             if (user == null || !PasswordHelper.VerifyPassword(password, user.UserPassword))
@@ -33,7 +33,7 @@ namespace LordCardShop.Handlers
             return (true, string.Empty);
         }
 
-        public (bool success, string errorMessage) RegisterHandler(string username, string email, string password, string gender, DateTime dob)
+        public static (bool success, string errorMessage) Register(string username, string email, string password, string gender, DateTime dob)
         {
             if (string.IsNullOrEmpty(username) || username.Length < 5 || username.Length > 30)
                 return (false, "Username must be between 5 and 30 characters.");

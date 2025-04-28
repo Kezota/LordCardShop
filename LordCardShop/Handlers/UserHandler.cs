@@ -1,4 +1,5 @@
 ﻿using LordCardShop.Helper;
+using LordCardShop.Model;
 using LordCardShop.Repositories;
 using System;
 using System.Collections.Generic;
@@ -7,9 +8,9 @@ using System.Web;
 
 namespace LordCardShop.Handlers
 {
-    public class UserHandler
+    public static class UserHandler
     {
-        public (bool success, string errorMessage) ProfileHandler(int userId, string username, string email, string password, string gender, string oldPassword = null)
+        public static (bool success, string errorMessage) ProfileHandler(int userId, string username, string email, string password, string oldPassword, string gender, DateTime dob)
         {
             var user = UserRepository.GetUserById(userId);
             if (user == null)
@@ -34,6 +35,7 @@ namespace LordCardShop.Handlers
             user.UserName = username;
             user.UserEmail = email;
             user.UserGender = gender;
+            user.UserDOB = dob;
             if (!string.IsNullOrEmpty(password))
             {
                 user.UserPassword = PasswordHelper.HashPassword(password);
@@ -42,6 +44,28 @@ namespace LordCardShop.Handlers
             UserRepository.UpdateUser(user);
 
             return (true, string.Empty);
+        }
+    
+        public static (bool success, string errorMessage, User user) GetProfileById(int userId)
+        {
+            var user = UserRepository.GetUserById(userId);
+            if (user == null)
+            {
+                return (false, "User not found.", user);
+            }
+
+            return (true, string.Empty, user);
+        }
+
+        public static (bool success, string errorMessage, User user) GetProfile(string username)
+        {
+            var user = UserRepository.GetUserByUsername(username);
+            if (user == null)
+            {
+                return (false, "User not found.", user);
+            }
+
+            return (true, string.Empty, user);
         }
     }
 }

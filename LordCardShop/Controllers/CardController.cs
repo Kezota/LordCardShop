@@ -18,7 +18,7 @@ namespace LordCardShop.Controllers
             }
         }
 
-        public static (bool isTrue, string message , List<Card>) GetAllCards()
+        public static (bool isTrue, string message , List<Card> cardLists) GetAllCards()
         {
             try
             {

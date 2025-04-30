@@ -4,6 +4,5 @@
     <section class="container container-fluid mt-5">
         <h2>Welcome to Lord Card Shop</h2>
         <p>Explore our wide selection of cards and more!</p>
-        <!-- Your specific page content here -->
     </section>
 </asp:Content>

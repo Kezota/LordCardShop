@@ -7,11 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace LordCardShop.Views
 {
-    public partial class HomePage : System.Web.UI.Page
+    public partial class Home1 : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                lblUsername.Text = "Kezia"; // dummy name
+            }
         }
     }
 }

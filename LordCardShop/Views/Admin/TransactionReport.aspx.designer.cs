@@ -7,20 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LordCardShop.Views
+namespace LordCardShop.Views.Admin
 {
 
 
-    public partial class Home1
+    public partial class TransactionReport
     {
 
         /// <summary>
-        /// lblUsername control.
+        /// LiteralReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsername;
+        protected global::System.Web.UI.WebControls.Literal LiteralReport;
     }
 }

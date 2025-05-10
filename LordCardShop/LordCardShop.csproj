@@ -93,10 +93,16 @@
     <Content Include="Views\Admin\AddCard.aspx" />
     <Content Include="Views\Admin\EditCard.aspx" />
     <Content Include="Views\Admin\ManageCard.aspx" />
+    <Content Include="Views\Admin\HandleTransaction.aspx" />
+    <Content Include="Views\Admin\TransactionHistory.aspx" />
+    <Content Include="Views\Admin\TransactionReport.aspx" />
     <Content Include="Views\Customer\CardDetail.aspx" />
+    <Content Include="Views\Customer\Cart.aspx" />
+    <Content Include="Views\Customer\Checkout.aspx" />
     <Content Include="Views\Home.aspx" />
     <Content Include="Views\Login.aspx" />
     <Content Include="Views\Customer\OrderCard.aspx" />
+    <Content Include="Views\Profile.aspx" />
     <Content Include="Views\Register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -178,6 +184,27 @@
     <Compile Include="Views\Admin\ManageCard.aspx.designer.cs">
       <DependentUpon>ManageCard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Admin\HandleTransaction.aspx.cs">
+      <DependentUpon>HandleTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\HandleTransaction.aspx.designer.cs">
+      <DependentUpon>HandleTransaction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\TransactionHistory.aspx.cs">
+      <DependentUpon>TransactionHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\TransactionHistory.aspx.designer.cs">
+      <DependentUpon>TransactionHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\TransactionReport.aspx.cs">
+      <DependentUpon>TransactionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\TransactionReport.aspx.designer.cs">
+      <DependentUpon>TransactionReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\AppLayout.Master.cs">
       <DependentUpon>AppLayout.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -191,6 +218,20 @@
     </Compile>
     <Compile Include="Views\Customer\CardDetail.aspx.designer.cs">
       <DependentUpon>CardDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Customer\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Customer\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
@@ -212,6 +253,13 @@
     </Compile>
     <Compile Include="Views\Customer\OrderCard.aspx.designer.cs">
       <DependentUpon>OrderCard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>

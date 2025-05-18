@@ -15,7 +15,7 @@
                         <input type="password" id="password" name="password" class="form-control" required placeholder="Enter your password" />
                     </div>
                     <div class="mt-3">
-                        <a href="RegisterPage.aspx" class="btn-link">Don't have an account? Register here</a>
+                        <a href="Register.aspx" class="btn-link">Don't have an account? Register here</a>
                     </div>
                     <!-- Error Message -->
                     <div class="mt-3">

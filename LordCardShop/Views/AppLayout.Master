@@ -34,27 +34,27 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="Home.aspx">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Views/Home.aspx">Home</a></li>
 
                         <!-- Role-based Navigation -->
                         <% If Session("UserRole") IsNot Nothing Then %>
                         <% Dim userRole As String = Session("UserRole").ToString() %>
                         <% If userRole = "Customer" Then %>
-                        <li class="nav-item"><a class="nav-link" href="/Customer/OrderCard.aspx">Order Card</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Customer/Profile.aspx">Profile</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Customer/TransactionHistory.aspx">History</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Customer/Cart.aspx">Cart</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Views/Customer/OrderCard.aspx">Order Card</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Views/Customer/Profile.aspx">Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Views/Customer/TransactionHistory.aspx">History</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Views/Customer/Cart.aspx">Cart</a></li>
                         <% ElseIf userRole = "Admin" Then %>
-                        <li class="nav-item"><a class="nav-link" href="/Admin/ManageCard.aspx">Manage Card</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Admin/TransactionReport.aspx">View Transaction</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Admin/TransactionReport.aspx">Transaction Report</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Admin/HandleTransaction.aspx">Order Queue</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Views/Admin/ManageCard.aspx">Manage Card</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Views/Admin/TransactionReport.aspx">View Transaction</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Views/Admin/TransactionReport.aspx">Transaction Report</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Views/Admin/HandleTransaction.aspx">Order Queue</a></li>
                         <% End If %>
 
-                        <li class="nav-item"><a class="nav-link" href="/Logout.aspx">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Views/Logout.aspx">Logout</a></li>
                         <% Else %>
-                        <li class="nav-item"><a class="nav-link" href="/Login.aspx">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Register.aspx">Sign up</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Views/Login.aspx">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Views/Register.aspx">Sign up</a></li>
                         <% End If %>
                     </ul>
                 </div>

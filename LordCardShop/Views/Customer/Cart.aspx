@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Cart" Language="C#" MasterPageFile="~/Views/AppLayout.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="LordCardShop.Views.Cart" %>
+﻿<%@ Page Title="Cart" Language="C#" MasterPageFile="~/Views/AppLayout.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="LordCardShop.Views.Customer.Cart" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="container mt-5">

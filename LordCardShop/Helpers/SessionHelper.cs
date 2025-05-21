@@ -11,7 +11,12 @@ namespace LordCardShop.Helpers
         // Set session untuk user
         public static void SetSession(User user)
         {
-            HttpContext.Current.Session["User"] = user; // Menyimpan objek user di session
+            if (user != null)
+            {
+                HttpContext.Current.Session["User"] = user; // Simpan user di session
+                HttpContext.Current.Session["UserRole"] = user.UserRole; // Simpan role user di session
+                HttpContext.Current.Session.Timeout = 60; // Set timeout session ke 60 menit
+            }
         }
 
         // Ambil session user

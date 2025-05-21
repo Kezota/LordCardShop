@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LordCardShop.Views.Admin
+namespace LordCardShop.Views.Customer
 {
 
 

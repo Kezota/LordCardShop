@@ -1,4 +1,5 @@
-﻿using LordCardShop.Model;
+﻿using LordCardShop.Controllers;
+using LordCardShop.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,16 +21,18 @@ namespace LordCardShop.Views.Admin
 
         private void LoadCards()
         {
-            // Dummy Data
-            var cards = new List<dynamic>
-        {
-            new { CardID = 1, CardName = "Dragon", CardPrice = 15000, CardType = "Monster", IsFoil = "Yes" },
-            new { CardID = 2, CardName = "Fireball", CardPrice = 12000, CardType = "Spell", IsFoil = "No" },
-            new { CardID = 3, CardName = "Phoenix", CardPrice = 20000, CardType = "Monster", IsFoil = "Yes" }
-        };
+            var (isTrue, message, cards) = CardController.GetAllCards();
 
-            CardGridView.DataSource = cards;
-            CardGridView.DataBind();
+            if (isTrue)
+            {
+                CardGridView.DataSource = cards;
+                CardGridView.DataBind();
+            }
+            else
+            {
+                // Tampilkan pesan error jika data gagal diambil
+                ShowAlert(message, false);
+            }
         }
 
         protected void BtnAddCard_Click(object sender, EventArgs e)
@@ -47,11 +50,40 @@ namespace LordCardShop.Views.Admin
             }
             else if (e.CommandName == "DeleteCard")
             {
-                // Delete logic here
+                var (isTrue, message) = CardController.DeleteCard(cardId);
+
+                if (!isTrue)
+                {
+                    ShowAlert(message, false);
+                    return;
+                }
+
                 ShowAlert("Card deleted successfully!", true);
                 LoadCards(); // refresh
             }
         }
+        
+        protected void CardGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // Ambil data dari kolom IsFoil
+                var card = (Card)e.Row.DataItem;
+                var isFoilLabel = (Label)e.Row.FindControl("lblIsFoil");
+
+                if (card.IsFoil != null && card.IsFoil.Length > 0)
+                {
+                    // Jika byte[] memiliki nilai, tampilkan true atau false
+                    isFoilLabel.Text = card.IsFoil[0] == 1 ? "True" : "False";
+                }
+                else
+                {
+                    // Jika null atau kosong, tampilkan False
+                    isFoilLabel.Text = "False";
+                }
+            }
+        }
+
 
         private void ShowAlert(string message, bool isSuccess)
         {

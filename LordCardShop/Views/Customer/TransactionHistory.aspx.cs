@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace LordCardShop.Views.Admin
+namespace LordCardShop.Views.Customer
 {
     public partial class TransactionHistory : System.Web.UI.Page
     {

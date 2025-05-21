@@ -1,9 +1,12 @@
-﻿using LordCardShop.Model;
+﻿using LordCardShop.Controllers;
+using LordCardShop.Model;
+using LordCardShop.Views.Customer;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Web;
+using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -15,18 +18,13 @@ namespace LordCardShop.Views
         {
             if (!IsPostBack)
             {
-                LoadDummyCards();
+                LoadCards();
             }
         }
 
-        private void LoadDummyCards()
+        private void LoadCards()
         {
-            List<Card> cards = new List<Card>
-            {
-                new Card { CardID = 1, CardName = "Dragon Slayer", CardPrice = (float)100.0, CardType = "Attack", IsFoil = new byte[] { 1 } },
-                new Card { CardID = 2, CardName = "Phoenix Wing", CardPrice = (float)150.5, CardType = "Magic", IsFoil = new byte[] { 0 } },
-                new Card { CardID = 3, CardName = "Knight's Valor", CardPrice = (float)80.0, CardType = "Defense", IsFoil = new byte[] { 0 } }
-            };
+            var (isTrue, message, cards) = CardController.GetAllCards();
 
             CardRepeater.DataSource = cards;
             CardRepeater.DataBind();

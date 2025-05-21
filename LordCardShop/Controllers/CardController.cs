@@ -18,7 +18,7 @@ namespace LordCardShop.Controllers
             }
         }
 
-        public static (bool isTrue, string message , List<Card>) GetAllCards()
+        public static (bool isTrue, string message , List<Card> cardLists) GetAllCards()
         {
             try
             {
@@ -53,6 +53,16 @@ namespace LordCardShop.Controllers
             catch (Exception)
             {
                 return (false, "Gagal menghapus Card");
+            }
+        }
+
+        public static (bool isTrue, string message) AddCard(Card card)
+        {
+            try
+            {
+                ManageCardHandler.InsertNewCard( card.CardName, car);
+                return (true, "Berhasil menambahkan Card");
+                
             }
         }
     }

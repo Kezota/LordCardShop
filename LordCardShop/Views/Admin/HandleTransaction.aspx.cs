@@ -1,7 +1,7 @@
-﻿using System;
+﻿using LordCardShop.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -9,14 +9,6 @@ namespace LordCardShop.Views.Admin
 {
     public partial class HandleTransaction : Page
     {
-        private static List<(int ID, string Customer, string Status)> transactions = new List<(int, string, string)>
-        {
-            (1, "Alice", "Unhandled"),
-            (2, "Bob", "Handled"),
-            (3, "Charlie", "Unhandled"),
-            (4, "David", "Handled")
-        };
-
         public string Filter { get; set; } = "All";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -31,7 +23,8 @@ namespace LordCardShop.Views.Admin
 
         private void RenderTransactions()
         {
-            List<(int ID, string Customer, string Status)> filteredTransactions;
+            List<Model.TransactionHeader> filteredTransactions;
+            var (isTrue, message, transactions) = TransactionController.GetAllTransactionHistory();
 
             if (Filter == "Handled")
             {
@@ -46,28 +39,35 @@ namespace LordCardShop.Views.Admin
                 filteredTransactions = transactions;
             }
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<table class='table table-bordered table-hover'>");
-            sb.Append("<thead class='table-light'><tr><th>ID</th><th>Customer</th><th>Status</th><th>Action</th></tr></thead>");
-            sb.Append("<tbody>");
+            gvTransactions.DataSource = filteredTransactions;
+            gvTransactions.DataBind();
+        }
 
-            foreach (var trx in filteredTransactions)
+        // Menangani perintah "Handle" untuk setiap transaksi
+        protected void gvTransactions_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Handle")
             {
-                sb.Append("<tr>");
-                sb.AppendFormat("<td>{0}</td><td>{1}</td><td>{2}</td>", trx.ID, trx.Customer, trx.Status);
-                if (trx.Status == "Unhandled")
+                int transactionId = Convert.ToInt32(e.CommandArgument);
+
+                // Panggil TransactionController.HandleTransaction dengan hasil berupa (isTrue, message)
+                var (isTrue, message) = TransactionController.HandleTransaction(transactionId);
+
+                // Periksa apakah transaksi berhasil ditangani
+                if (isTrue)
                 {
-                    sb.AppendFormat("<td><form method='post'><button name='handleBtn' value='{0}' class='btn btn-sm btn-success'>Handle</button></form></td>", trx.ID);
+                    lblMessage.Text = message; // Menampilkan pesan sukses
+                    lblMessage.CssClass = "alert alert-success";
+                    lblMessage.Visible = true;
+                    RenderTransactions(); // Refresh the grid after handling the transaction
                 }
                 else
                 {
-                    sb.Append("<td><button class='btn btn-sm btn-secondary' disabled>Handled</button></td>");
+                    lblMessage.Text = message; // Menampilkan pesan gagal
+                    lblMessage.CssClass = "alert alert-danger";
+                    lblMessage.Visible = true;
                 }
-                sb.Append("</tr>");
             }
-
-            sb.Append("</tbody></table>");
-            LiteralTransactions.Text = sb.ToString();
         }
     }
 }

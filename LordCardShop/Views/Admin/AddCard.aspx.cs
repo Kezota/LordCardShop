@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LordCardShop.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +16,7 @@ namespace LordCardShop.Views.Admin
         {
             string name = TxtName.Text.Trim();
             string priceStr = TxtPrice.Text.Trim();
+            string description = TxtDescription.Text.Trim();
             string type = TxtType.Text.Trim();
             string foil = TxtFoil.Text.Trim().ToLower();
 
@@ -22,6 +24,13 @@ namespace LordCardShop.Views.Admin
                 return;
 
             // Insert to database here
+            var (isTrue, message) = CardController.AddCard(name, float.Parse(priceStr), "Dummy Description", type, foil == "yes" ? "yes" : "no");
+
+            if (!isTrue)
+            {
+                ShowAlert(message, false);
+                return;
+            }
 
             ShowAlert("Card inserted successfully!", true);
         }

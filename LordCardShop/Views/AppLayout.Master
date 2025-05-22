@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="AppLayout.Master.vb" Inherits="LordCardShop.Views.AppLayout" %>
+
+<!DOCTYPE html>
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
@@ -304,7 +306,7 @@
     <form id="form1" runat="server">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container container-fluid">
-                <a class="navbar-brand" href="~/Views/Home.aspx">Lord CardShop</a>
+                <a class="navbar-brand" href="/Views/Home.aspx">Lord CardShop</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -314,20 +316,21 @@
 
                         <!-- Role-based Navigation -->
                         <% If Session("UserRole") IsNot Nothing Then %>
-                        <% Dim userRole As String = Session("UserRole").ToString() %>
-                        <% If userRole = "Customer" Then %>
-                        <li class="nav-item"><a class="nav-link" href="/Views/Customer/OrderCard.aspx">Order Card</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Views/Customer/Profile.aspx">Profile</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Views/Customer/TransactionHistory.aspx">History</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Views/Customer/Cart.aspx">Cart</a></li>
-                        <% ElseIf userRole = "Admin" Then %>
-                        <li class="nav-item"><a class="nav-link" href="/Views/Admin/ManageCard.aspx">Manage Card</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Views/Admin/TransactionReport.aspx">View Transaction</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Views/Admin/TransactionReport.aspx">Transaction Report</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Views/Admin/HandleTransaction.aspx">Order Queue</a></li>
-                        <% End If %>
+                            <% Dim userRole As String = Session("UserRole").ToString() %>
+                            <% If userRole = "customer" Then %>
+                            <li class="nav-item"><a class="nav-link" href="/Views/Customer/OrderCard.aspx">Order Card</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Views/Customer/Profile.aspx">Profile</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Views/Customer/TransactionHistory.aspx">History</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Views/Customer/Cart.aspx">Cart</a></li>
+                            <% ElseIf userRole = "admin" Then %>
+                            <li class="nav-item"><a class="nav-link" href="/Views/Admin/ManageCard.aspx">Manage Card</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Views/Admin/ViewTransactions.aspx">Transactions</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Views/Admin/TransactionReport.aspx">Report</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Views/Admin/HandleTransaction.aspx">Order Queue</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/Views/Customer/Profile.aspx">Profile</a></li>
+                            <% End If %>
 
-                        <li class="nav-item"><a class="nav-link" href="/Views/Logout.aspx">Logout</a></li>
+                        <li class="nav-item"><asp:LinkButton ID="logout_btn" runat="server" OnClick="Logout_Click" CssClass="nav-link">Logout</asp:LinkButton></li>
                         <% Else %>
                         <li class="nav-item"><a class="nav-link" href="/Views/Login.aspx">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Views/Register.aspx">Sign up</a></li>

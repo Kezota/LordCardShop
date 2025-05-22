@@ -15,7 +15,23 @@
             </form>
         </div>
 
-        <asp:Literal ID="LiteralTransactions" runat="server"></asp:Literal>
+        <asp:GridView ID="gvTransactions" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered table-hover" OnRowCommand="gvTransactions_RowCommand">
+            <Columns>
+                <asp:BoundField DataField="TransactionID" HeaderText="ID" SortExpression="TransactionID" />
+                <asp:BoundField DataField="TransactionDate" HeaderText="Date" SortExpression="TransactionDate" />
+                <asp:BoundField DataField="CustomerID" HeaderText="CustomerID" SortExpression="CustomerID" />
+                <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                <asp:TemplateField HeaderText="Action">
+                    <ItemTemplate>
+                        <!-- Tombol Handle akan muncul hanya jika status transaksi 'Unhandled' -->
+                        <asp:Button ID="btnHandle" runat="server" CommandName="Handle" CommandArgument='<%# Eval("TransactionID") %>' Text="Handle" CssClass="btn btn-sm btn-success" Visible='<%# Eval("Status").ToString() == "Unhandled" %>' />
+                        <!-- Tombol Handled akan muncul hanya jika status transaksi 'Handled' -->
+                        <asp:Button ID="btnHandled" runat="server" Text="Handled" CssClass="btn btn-sm btn-secondary" Enabled="False" Visible='<%# Eval("Status").ToString() == "Handled" %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+
         <asp:Label ID="lblMessage" runat="server" CssClass="alert alert-success mt-3 d-none" EnableViewState="false"></asp:Label>
     </div>
 </asp:Content>

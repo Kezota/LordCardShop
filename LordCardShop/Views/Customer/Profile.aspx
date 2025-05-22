@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/AppLayout.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="LordCardShop.Views.Profile" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/AppLayout.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="LordCardShop.Views.Customer.Profile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="container">
@@ -19,17 +19,17 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="txtPassword" class="form-label">Current Password</label>
-                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" />
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <asp:TextBox ID="txtDOB" runat="server" CssClass="form-control" TextMode="Date" />
                 </div>
 
                 <div class="mb-3">
                     <label for="ddlGender" class="form-label">Gender</label>
                     <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-select">
                         <asp:ListItem Text="-- Select Gender --" Value="" />
-                        <asp:ListItem Text="Male" Value="Male" />
-                        <asp:ListItem Text="Female" Value="Female" />
-                        <asp:ListItem Text="Other" Value="Other" />
+                        <asp:ListItem Text="Male" Value="male" />
+                        <asp:ListItem Text="Female" Value="female" />
+                        <asp:ListItem Text="Other" Value="other" />
                     </asp:DropDownList>
                 </div>
             </div>

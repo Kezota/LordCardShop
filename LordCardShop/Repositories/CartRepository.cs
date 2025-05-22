@@ -1,6 +1,7 @@
 ﻿using LordCardShop.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -31,9 +32,22 @@ namespace LordCardShop.Repositories
             return db.Carts.FirstOrDefault(c => c.UserID == userId && c.CardID == cardId);
         }
 
-        public static List<Cart> GetCartByUserId(int userId)
+        public static List<CartItemData> GetCartByUserId(int userId)
         {
-            return db.Carts.Where(c => c.UserID == userId).ToList();
+            var cartItems = (from c in db.Carts
+                             join card in db.Cards on c.CardID equals card.CardID
+                             where c.UserID == userId
+                             select new CartItemData
+                             {
+                                 CartID = c.CartID,
+                                 CardID = card.CardID,
+                                 CardName = card.CardName,
+                                 CardPrice = card.CardPrice,
+                                 CardType = card.CardType,
+                                 Quantity = c.Quantity
+                             }).ToList();
+
+            return cartItems;
         }
 
         public static void UpdateCart(Cart updatedCart)
@@ -52,11 +66,20 @@ namespace LordCardShop.Repositories
         public static void UpdateCartQuantity(int cartId, int cardId, int quantity)
         {
             Cart cart = db.Carts.FirstOrDefault(c => c.CartID == cartId && c.CardID == cardId);
-            if (cart != null)
+
+            if (cart == null)
             {
-                cart.Quantity = quantity;
+               throw new Exception("Cart not found.");
+            }
+
+            if (quantity <= 0)
+            {
+                DeleteCardFromCart(cartId, cardId);
                 db.SaveChanges();
             }
+
+            cart.Quantity = quantity;
+            db.SaveChanges();
         }
 
         public static void DeleteCart(int cartId)
@@ -66,6 +89,24 @@ namespace LordCardShop.Repositories
             {
                 db.Carts.Remove(cart);
                 db.SaveChanges();
+            }
+        }
+
+        public static void DeleteCardFromCart(int cartId, int cardId)
+        {
+            // Cari cart item berdasarkan CartID dan CardID
+            Cart cartItem = db.Carts.FirstOrDefault(c => c.CartID == cartId && c.CardID == cardId);
+
+            if (cartItem != null)
+            {
+                // Jika item ditemukan, hapus dari database
+                db.Carts.Remove(cartItem);
+                db.SaveChanges();
+            }
+            else
+            {
+                // Jika item tidak ditemukan, lemparkan exception atau kembalikan pesan kesalahan
+                throw new Exception("The specified card is not found in the cart.");
             }
         }
 

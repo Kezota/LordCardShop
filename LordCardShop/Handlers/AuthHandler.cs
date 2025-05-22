@@ -33,7 +33,7 @@ namespace LordCardShop.Handlers
             return (true, string.Empty);
         }
 
-        public static (bool success, string errorMessage) Register(string username, string email, string password, string gender, DateTime dob)
+        public static (bool success, string errorMessage) Register(string username, string email, string password, string gender, DateTime dob, string role)
         {
             if (string.IsNullOrEmpty(username) || username.Length < 5 || username.Length > 30)
                 return (false, "Username must be between 5 and 30 characters.");
@@ -45,7 +45,7 @@ namespace LordCardShop.Handlers
                 return (false, "Gender must be chosen.");
 
             var hashedPassword = PasswordHelper.HashPassword(password);
-            var user = UserFactory.CreateUser(username, email, hashedPassword, gender, dob, "customer");
+            var user = UserFactory.CreateUser(username, email, hashedPassword, gender, dob, role);
 
             UserRepository.AddUser(user);
 

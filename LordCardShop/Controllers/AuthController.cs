@@ -21,11 +21,11 @@ namespace LordCardShop.Controllers
             }
         }
 
-        public static (bool, string) Register(string username, string email, string password, string gender, DateTime dob)
+        public static (bool, string) Register(string username, string email, string password, string gender, DateTime dob, string role)
         {
             try
             {
-                return AuthHandler.Register(username, email, password, gender, dob);
+                return AuthHandler.Register(username, email, password, gender, dob, role);
             }
             catch (Exception)
             {

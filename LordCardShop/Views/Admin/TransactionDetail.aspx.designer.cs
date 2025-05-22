@@ -11,7 +11,7 @@ namespace LordCardShop.Views.Admin
 {
 
 
-    public partial class TransactionHistory
+    public partial class TransactionDetail
     {
 
         /// <summary>
@@ -24,6 +24,15 @@ namespace LordCardShop.Views.Admin
         protected global::System.Web.UI.WebControls.Label lblTransactionID;
 
         /// <summary>
+        /// lblCustomerID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCustomerID;
+
+        /// <summary>
         /// lblStatus control.
         /// </summary>
         /// <remarks>
@@ -33,12 +42,30 @@ namespace LordCardShop.Views.Admin
         protected global::System.Web.UI.WebControls.Label lblStatus;
 
         /// <summary>
-        /// lblTransactionDate control.
+        /// gvTransactionDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTransactionDate;
+        protected global::System.Web.UI.WebControls.GridView gvTransactionDetails;
+
+        /// <summary>
+        /// btnBack control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBack;
+
+        /// <summary>
+        /// lblMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessage;
     }
 }

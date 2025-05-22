@@ -7,7 +7,8 @@ namespace LordCardShop.Controllers
 {
     public class CardController
     {
-        public static (bool isTrue , string message, Card cardDetail) ViewCard(int cardId) {
+        public static (bool isTrue, string message, Card cardDetail) ViewCard(int cardId)
+        {
             try
             {
                 return (true, "Card info berhasil diambil", CardHandler.GetCardDetail(cardId));
@@ -18,7 +19,7 @@ namespace LordCardShop.Controllers
             }
         }
 
-        public static (bool isTrue, string message , List<Card>) GetAllCards()
+        public static (bool isTrue, string message, List<Card> cardLists) GetAllCards()
         {
             try
             {
@@ -30,11 +31,11 @@ namespace LordCardShop.Controllers
             }
         }
 
-        public static (bool isTrue, string message) UpdateCard(Card card)
+        public static (bool isTrue, string message) UpdateCard(int cardId, string name, float price, string description, string type, string foil)
         {
             try
             {
-                CardHandler.UpdateCard(card);
+                ManageCardHandler.UpdateCard(cardId, name, price, description, type, foil);
                 return (true, "Card berhasil diupdate");
             }
             catch (Exception)
@@ -43,7 +44,7 @@ namespace LordCardShop.Controllers
             }
         }
 
-        public static (bool isTrue, string message) DeleteCard(int  idCard)
+        public static (bool isTrue, string message) DeleteCard(int idCard)
         {
             try
             {
@@ -53,6 +54,19 @@ namespace LordCardShop.Controllers
             catch (Exception)
             {
                 return (false, "Gagal menghapus Card");
+            }
+        }
+
+        public static (bool isTrue, string message) AddCard(string name, float price, string description, string type, string foil)
+        {
+            try
+            {
+                var (newCard, message) = ManageCardHandler.InsertNewCard(name, price, description, type, foil);
+                return (true, "Berhasil menambahkan Card");
+            }
+            catch (Exception)
+            {
+                return (false, "Gagal menambahkan Card");
             }
         }
     }

@@ -91,7 +91,10 @@
     <Content Include="Views\Admin\EditCard.aspx" />
     <Content Include="Views\Admin\ManageCard.aspx" />
     <Content Include="Views\Admin\HandleTransaction.aspx" />
-    <Content Include="Views\Admin\TransactionHistory.aspx" />
+    <Content Include="Views\Admin\TransactionDetail.aspx" />
+    <Content Include="Views\Admin\VIewTransactions.aspx" />
+    <Content Include="Views\Customer\TransactionDetail.aspx" />
+    <Content Include="Views\Customer\TransactionHistory.aspx" />
     <Content Include="Views\Admin\TransactionReport.aspx" />
     <Content Include="Views\Customer\CardDetail.aspx" />
     <Content Include="Views\Customer\Cart.aspx" />
@@ -99,13 +102,16 @@
     <Content Include="Views\Home.aspx" />
     <Content Include="Views\Login.aspx" />
     <Content Include="Views\Customer\OrderCard.aspx" />
-    <Content Include="Views\Profile.aspx" />
+    <Content Include="Views\Customer\Profile.aspx" />
     <Content Include="Views\Register.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CardController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Factories\CardFactory.cs" />
     <Compile Include="Factories\CartFactory.cs" />
@@ -130,6 +136,7 @@
     <Compile Include="Model\Cart.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\CartItemData.cs" />
     <Compile Include="Model\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -151,6 +158,8 @@
     <Compile Include="Model\TransactionHeader.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\TransactionHistoryData.cs" />
+    <Compile Include="Model\TransactionReportData.cs" />
     <Compile Include="Model\User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -159,6 +168,7 @@
     <Compile Include="Repositories\CartRepository.cs" />
     <Compile Include="Repositories\TransactionDetailRepository.cs" />
     <Compile Include="Repositories\TransactionHeaderRepository.cs" />
+    <Compile Include="Repositories\TransactionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Views\Admin\AddCard.aspx.cs">
       <DependentUpon>AddCard.aspx</DependentUpon>
@@ -188,11 +198,32 @@
     <Compile Include="Views\Admin\HandleTransaction.aspx.designer.cs">
       <DependentUpon>HandleTransaction.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Admin\TransactionHistory.aspx.cs">
+    <Compile Include="Views\Admin\TransactionDetail.aspx.cs">
+      <DependentUpon>TransactionDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\TransactionDetail.aspx.designer.cs">
+      <DependentUpon>TransactionDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\VIewTransactions.aspx.cs">
+      <DependentUpon>VIewTransactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\VIewTransactions.aspx.designer.cs">
+      <DependentUpon>VIewTransactions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\TransactionDetail.aspx.cs">
+      <DependentUpon>TransactionDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Customer\TransactionDetail.aspx.designer.cs">
+      <DependentUpon>TransactionDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\TransactionHistory.aspx.cs">
       <DependentUpon>TransactionHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Admin\TransactionHistory.aspx.designer.cs">
+    <Compile Include="Views\Customer\TransactionHistory.aspx.designer.cs">
       <DependentUpon>TransactionHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\TransactionReport.aspx.cs">
@@ -251,11 +282,11 @@
     <Compile Include="Views\Customer\OrderCard.aspx.designer.cs">
       <DependentUpon>OrderCard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Profile.aspx.cs">
+    <Compile Include="Views\Customer\Profile.aspx.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Profile.aspx.designer.cs">
+    <Compile Include="Views\Customer\Profile.aspx.designer.cs">
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Register.aspx.cs">

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/AppLayout.Master" AutoEventWireup="true" CodeBehind="TransactionReport.aspx.cs" Inherits="LordCardShop.Views.Admin.TransactionReport" %>
+﻿<%@ Page Title="Transaction Report" Language="C#" MasterPageFile="~/Views/AppLayout.Master" AutoEventWireup="true" CodeBehind="TransactionReport.aspx.cs" Inherits="LordCardShop.Views.Admin.TransactionReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container mt-5">

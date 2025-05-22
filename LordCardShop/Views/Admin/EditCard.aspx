@@ -18,6 +18,10 @@
             <asp:TextBox ID="TxtPrice" runat="server" CssClass="form-control" TextMode="Number" />
         </div>
         <div class="form-group">
+            <label>Description</label>
+            <asp:TextBox ID="TxtDescription" runat="server" CssClass="form-control" />
+        </div>
+        <div class="form-group">
             <label>Type (Spell/Monster)</label>
             <asp:TextBox ID="TxtType" runat="server" CssClass="form-control" />
         </div>

@@ -19,6 +19,10 @@
                     <asp:Label ID="CardPriceLabel" runat="server" />
                 </p>
                 <p class="card-text">
+                    <strong>Description:</strong>
+                    <asp:Label ID="CardDescLabel" runat="server" />
+                </p>
+                <p class="card-text">
                     <strong>Type:</strong>
                     <asp:Label ID="CardTypeLabel" runat="server" />
                 </p>

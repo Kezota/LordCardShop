@@ -107,7 +107,7 @@
         }
 
         .loginSignupContainer {
-            max-width: 500px;
+            max-width: 550px;
             width: 100%;
             margin: 0 auto;
         }
@@ -230,6 +230,10 @@
             margin-bottom: 1rem;
             display: block;
             font-size: 0.9rem;
+        }
+
+        .error-container {
+            margin-top: 2rem;
         }
 
         footer {

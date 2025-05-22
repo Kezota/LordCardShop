@@ -42,7 +42,7 @@
                 </div>
 
                 <!-- Error Message -->
-                <div class="mt-3">
+                <div class="mt-3 error-container">
                     <asp:Label ID="ErrorMessage" runat="server" CssClass="text-danger" Text="" Visible="false"></asp:Label>
                     <asp:Button ID="btnRegister" runat="server" CssClass="btn btn-primary btn-block" Text="Register" OnClick="btnRegister_Click" />
                 </div>

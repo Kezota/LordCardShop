@@ -12,6 +12,7 @@
                     <div class="col-md-2">Price</div>
                     <div class="col-md-4">Description</div>
                     <div class="col-md-2">Quantity</div>
+                    <div class="col-md-2">Action</div>
                 </div>
             </HeaderTemplate>
             <ItemTemplate>
@@ -19,11 +20,27 @@
                     <div class="col-md-4"><%# Eval("CardName") %></div>
                     <div class="col-md-2">Rp <%# Eval("CardPrice") %></div>
                     <div class="col-md-4"><%# Eval("CardType") %></div>
-                    <div class="col-md-2"><%# Eval("Quantity") %></div>
+                    <div class="col-md-2">
+                        <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" Text='<%# Eval("Quantity") %>' />
+                    </div>
+                    <div class="col-md-2">
+                        <!-- Tombol untuk menambah quantity -->
+                        <asp:Button ID="btnIncreaseQuantity" runat="server" Text="Increase" CssClass="btn btn-sm btn-success" OnClick="btnUpdateQuantity_Click" CommandArgument="increase" />
+                        <!-- Tombol untuk mengurangi quantity -->
+                        <asp:Button ID="btnDecreaseQuantity" runat="server" Text="Decrease" CssClass="btn btn-sm btn-warning" OnClick="btnUpdateQuantity_Click" CommandArgument="decrease" />
+                        <!-- Tombol untuk menghapus item -->
+                        <asp:Button ID="btnRemoveCard" runat="server" Text="Remove" CssClass="btn btn-sm btn-danger" OnClick="btnRemoveCard_Click" />
+                    </div>
+                    <!-- Menambahkan Label untuk CartID dan CardID yang tersembunyi -->
+                    <asp:Label ID="lblCartID" runat="server" Text='<%# Eval("CartID") %>' Visible="false" />
+                    <asp:Label ID="lblCardID" runat="server" Text='<%# Eval("CardID") %>' Visible="false" />
                 </div>
             </ItemTemplate>
         </asp:Repeater>
 
-        <asp:Button ID="btnCheckout" runat="server" CssClass="btn btn-primary mt-4" Text="Proceed to Checkout" OnClick="btnCheckout_Click" />
+        <div class="d-flex justify-content-between mt-4">
+            <asp:Button ID="btnCheckout" runat="server" CssClass="btn btn-primary" Text="Proceed to Checkout" OnClick="btnCheckout_Click" />
+            <asp:Button ID="btnClearCart" runat="server" CssClass="btn btn-danger" Text="Clear Cart" OnClick="btnClearCart_Click" />
+        </div>
     </section>
 </asp:Content>

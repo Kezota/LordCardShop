@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
+using LordCardShop.Controllers;
 using System.Web.UI.WebControls;
+using System.Web;
 
 namespace LordCardShop.Views.Customer
 {
@@ -15,17 +12,49 @@ namespace LordCardShop.Views.Customer
         {
             if (!IsPostBack)
             {
-                LoadTransactionDetail();
+                LoadTransactionHistory();
             }
         }
 
-        private void LoadTransactionDetail()
+        protected void LoadTransactionHistory()
         {
-            int transactionId = int.Parse(Request.QueryString["TransactionID"]);
-            // Use transactionId to fetch details (for now using dummy data)
-            lblTransactionID.Text = transactionId.ToString();
-            lblStatus.Text = "Completed"; // Simulated status
-            lblTransactionDate.Text = "2025-04-01"; // Simulated date
+            // Ambil User ID dari sesi
+            int userId = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
+
+            if (userId == 0)
+            {
+                // Jika User ID tidak ditemukan di sesi, tampilkan pesan error
+                lblMessage.Text = "<p class='alert alert-danger'>User not logged in.</p>";
+                lblMessage.Visible = true;
+                return;
+            }
+
+            // Memanggil controller untuk mengambil data transaksi berdasarkan User ID
+            var (isSuccess, message, transactions) = TransactionController.GetTransactionHistoryByUserId(userId);
+
+            if (isSuccess)
+            {
+                // Menampilkan data transaksi di GridView
+                gvTransactionHistory.DataSource = transactions;
+                gvTransactionHistory.DataBind();
+            }
+            else
+            {
+                // Jika gagal mengambil data, tampilkan pesan error
+                lblMessage.Text = $"<p class='alert alert-danger'>{message}</p>";
+                lblMessage.Visible = true;
+            }
+        }
+
+        // Fungsi untuk menangani klik tombol "View"
+        protected void gvTransactionHistory_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "View")
+            {
+                int transactionId = Convert.ToInt32(e.CommandArgument);
+                // Arahkan ke halaman detail transaksi
+                Response.Redirect($"/Views/Customer/TransactionDetail.aspx?TransactionID={transactionId}");
+            }
         }
     }
 }

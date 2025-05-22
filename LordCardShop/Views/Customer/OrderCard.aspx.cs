@@ -32,12 +32,25 @@ namespace LordCardShop.Views
 
         protected void CardRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            // Mendapatkan CardID dari CommandArgument
             int cardId = Convert.ToInt32(e.CommandArgument);
+
+            // Mengambil UserID dari session
+            int userId = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
 
             if (e.CommandName == "AddToCart")
             {
-                // Dummy add to cart logic
-                ShowAlert($"Card ID {cardId} successfully added to cart!", true);
+                // Menambahkan kartu ke keranjang
+                var (isSuccess, message) = CartController.AddCardToCart(userId, cardId, 1); // Quantity default 1
+
+                if (isSuccess)
+                {
+                    ShowAlert($"Card ID {cardId} successfully added to cart!", true);
+                }
+                else
+                {
+                    ShowAlert($"Failed to add Card ID {cardId} to cart. {message}", false);
+                }
             }
             else if (e.CommandName == "ViewDetail")
             {

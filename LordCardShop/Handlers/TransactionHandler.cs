@@ -42,9 +42,23 @@ namespace LordCardShop.Handlers
             }
         }
 
-        public static List<TransactionHeader> GetTransactionHistoryByUser(int userId)
+        public static List<TransactionHistoryData> GetTransactionHistoryByUser(int userId)
         {
-            return TransactionHeaderRepository.GetTransactionByCustomerId(userId);
+            // Ambil data transaksi berdasarkan UserID
+            var transactions = TransactionHeaderRepository.GetTransactionByCustomerId(userId);
+
+            // Kelompokkan transaksi berdasarkan TransactionID dan jumlahkan subtotalnya
+            var groupedTransactions = transactions
+                .GroupBy(t => t.TransactionID) // Kelompokkan berdasarkan TransactionID
+                .Select(group => new TransactionHistoryData
+                {
+                    TransactionID = group.Key,
+                    TransactionDate = group.First().TransactionDate,
+                    Status = group.First().Status,
+                    Subtotal = group.Sum(t => t.Subtotal) // Jumlahkan subtotal untuk setiap TransactionID
+                }).ToList();
+
+            return groupedTransactions;
         }
 
         public static List<TransactionHeader> GetAllTransactions()
@@ -92,9 +106,24 @@ namespace LordCardShop.Handlers
             }
         }
 
-        public static List<TransactionHeader> GetAllTransactionsForReport()
+        public static (bool isSuccess, string message, List<TransactionReportData> transactions) GetTransactionReport()
         {
-            return TransactionHeaderRepository.GetAllTransactionHeaders();
+            try
+            {
+                var transactions = TransactionRepository.GetTransactionReport();
+                if (transactions.Count > 0)
+                {
+                    return (true, "Data retrieved successfully.", transactions);
+                }
+                else
+                {
+                    return (false, "No transactions found.", null);
+                }
+            }
+            catch (Exception ex)
+            {
+                return (false, $"An error occurred: {ex.Message}", null);
+            }
         }
     }
 }

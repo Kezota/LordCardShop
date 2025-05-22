@@ -7,7 +7,7 @@ namespace LordCardShop.Controllers
 {
     public class TransactionController
     {
-        public static (bool isTrue, string message, List<TransactionHeader> transactionHeader) GetTransactionHistoryByUserId(int userId) {
+        public static (bool isTrue, string message, List<TransactionHistoryData> transactionHeader) GetTransactionHistoryByUserId(int userId) {
             try
             {
                 var transactionHistory = TransactionHandler.GetTransactionHistoryByUser(userId);
@@ -81,11 +81,11 @@ namespace LordCardShop.Controllers
             }
         }
 
-        public static (bool isTrue, string message, List<TransactionHeader>) GetReports()
+        public static (bool isTrue, string message, List<TransactionReportData>) GetTransactionReportData()
         {
             try {
-                var reports = TransactionHandler.GetAllTransactionsForReport();
-                return (true, "Berhasil mengambil laporan transaksi", reports);
+                var (isSuccess, message, transactions) = TransactionHandler.GetTransactionReport();
+                return (true, "Berhasil mengambil laporan transaksi", transactions);
             }
             catch (Exception) {
                 return (false, "Gagal mengambil laporan transaksi", null);

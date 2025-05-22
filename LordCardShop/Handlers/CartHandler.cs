@@ -39,7 +39,7 @@ namespace LordCardShop.Handlers
             return (true, "");
         }
 
-        public static List<Cart> ViewCart(int userId)
+        public static List<CartItemData> ViewCart(int userId)
         {
             return CartRepository.GetCartByUserId(userId);
         }
@@ -56,13 +56,13 @@ namespace LordCardShop.Handlers
 
         public static (bool isSuccess, string errorMessage) CheckoutCart(int userId)
         {
-            List<Cart> carts = CartRepository.GetCartByUserId(userId);
+            List<CartItemData> carts = CartRepository.GetCartByUserId(userId);
             if (carts == null || carts.Count == 0)
             {
                 return (false, "Cart is empty.");
             }
 
-            TransactionHeader newTransaction = TransactionHeaderFactory.CreateTransactionHeader(DateTime.Now, userId, "Pending");
+            TransactionHeader newTransaction = TransactionHeaderFactory.CreateTransactionHeader(DateTime.Now, userId, "Unhandled");
             var transactionId = TransactionHeaderRepository.AddTransactionHeader(newTransaction);
 
             if (transactionId == null || transactionId <= 0)
@@ -83,6 +83,38 @@ namespace LordCardShop.Handlers
             }
 
             return (true, "");
+        }
+    
+        public static (bool isSuccess, string errorMessage) UpdateCart(int cartId, int cardId, int quantity)
+        {
+           try
+            {
+                if (quantity <= 0)
+                {
+                    return (false, "Quantity must be greater than 0.");
+                }
+
+                CartRepository.UpdateCartQuantity(cartId, cardId, quantity);
+
+                return (true, "");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Failed to update cart: {ex.Message}");
+            }
+        }
+
+        public static (bool isSuccess, string errorMessage) DeleteCardFromCart(int cartId, int cardId)
+        {
+            try
+            {
+                CartRepository.DeleteCardFromCart(cartId, cardId);
+                return (true, "");
+            }
+            catch (Exception ex)
+            {
+                return (false, $"Failed to delete card from cart: {ex.Message}");
+            }
         }
     }
 }

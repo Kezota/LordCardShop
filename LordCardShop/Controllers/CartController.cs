@@ -16,7 +16,7 @@ namespace LordCardShop.Controllers
             return (false, errorMessage);
         }
 
-        public static (bool isTrue, string message, List<Cart> cartItems) ViewCart(int userId)
+        public static (bool isTrue, string message, List<CartItemData> cartItems) ViewCart(int userId)
         {
             try
             {
@@ -47,6 +47,16 @@ namespace LordCardShop.Controllers
                 return (true, "Checkout completed successfully.");
             }
             return (false, errorMessage);
+        }
+
+        public static (bool isSuccess, string errorMessage) UpdateCart(int cartId, int cardId, int quantity)
+        {
+            return CartHandler.UpdateCart(cartId, cardId, quantity);
+        }
+
+        public static (bool isSuccess, string errorMessage) DeleteCardFromCart(int cartId, int cardId)
+        {
+            return CartHandler.DeleteCardFromCart(cartId, cardId);
         }
     }
 }

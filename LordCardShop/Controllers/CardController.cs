@@ -30,11 +30,11 @@ namespace LordCardShop.Controllers
             }
         }
 
-        public static (bool isTrue, string message) UpdateCard(int cardId, string name, float price, string description, string type, string foil)
+        public static (bool isTrue, string message) UpdateCard(Card card)
         {
             try
             {
-                ManageCardHandler.UpdateCard(cardId, name, price, description, type, foil);
+                CardHandler.UpdateCard(card);
                 return (true, "Card berhasil diupdate");
             }
             catch (Exception)
@@ -56,13 +56,15 @@ namespace LordCardShop.Controllers
             }
         }
 
-        public static (bool isTrue, string message) AddCard(string name, float price, string description, string type, string foil)
+        public static (bool isTrue, string message) AddCard(Card card)
         {
             try
             {
-                var (newCard, message) = ManageCardHandler.InsertNewCard(name, price, description, type, foil);
+                ManageCardHandler.InsertNewCard(card.CardName, card.CardPrice, card.CardDesc, card.CardType,
+                    (card.IsFoil[0] == 1 ? "yes" : "no"));
                 return (true, "Berhasil menambahkan Card");
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 return (false, "Gagal menambahkan Card");
             }

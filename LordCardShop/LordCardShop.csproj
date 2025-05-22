@@ -91,6 +91,8 @@
     <Content Include="Views\Admin\EditCard.aspx" />
     <Content Include="Views\Admin\ManageCard.aspx" />
     <Content Include="Views\Admin\HandleTransaction.aspx" />
+    <Content Include="Views\Admin\TransactionDetail.aspx" />
+    <Content Include="Views\Admin\VIewTransactions.aspx" />
     <Content Include="Views\Customer\TransactionHistory.aspx" />
     <Content Include="Views\Admin\TransactionReport.aspx" />
     <Content Include="Views\Customer\CardDetail.aspx" />
@@ -190,6 +192,20 @@
     </Compile>
     <Compile Include="Views\Admin\HandleTransaction.aspx.designer.cs">
       <DependentUpon>HandleTransaction.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\TransactionDetail.aspx.cs">
+      <DependentUpon>TransactionDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\TransactionDetail.aspx.designer.cs">
+      <DependentUpon>TransactionDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\VIewTransactions.aspx.cs">
+      <DependentUpon>VIewTransactions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\VIewTransactions.aspx.designer.cs">
+      <DependentUpon>VIewTransactions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Customer\TransactionHistory.aspx.cs">
       <DependentUpon>TransactionHistory.aspx</DependentUpon>

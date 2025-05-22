@@ -11,7 +11,7 @@ namespace LordCardShop.Views.Admin
 {
 
 
-    public partial class HandleTransaction
+    public partial class ViewTransactions
     {
 
         /// <summary>

@@ -52,6 +52,11 @@ namespace LordCardShop.Handlers
             return TransactionHeaderRepository.GetAllTransactionHeaders();
         }
 
+        public static TransactionHeader GetTransactionHeaderById(int transactionId) 
+        {
+            return TransactionHeaderRepository.GetTransactionHeaderById(transactionId);
+        }
+
         public static TransactionDetail GetTransactionDetail(int transactionId, int cardId)
         {
             return TransactionDetailRepository.GetTransactionDetail(transactionId, cardId);
@@ -87,8 +92,6 @@ namespace LordCardShop.Handlers
             }
         }
 
-        // Note: Untuk View Transaction Report pake CrystalReport, biasanya dari Controller/View, bukan di handler.
-        // Tapi Handler bisa disiapin method buat fetch all transactions untuk report.
         public static List<TransactionHeader> GetAllTransactionsForReport()
         {
             return TransactionHeaderRepository.GetAllTransactionHeaders();

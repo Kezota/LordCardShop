@@ -2,6 +2,7 @@
 using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LordCardShop.Middleware;
 
 namespace LordCardShop.Views.Admin
 {
@@ -11,6 +12,7 @@ namespace LordCardShop.Views.Admin
         {
             if (!IsPostBack)
             {
+                RoleMiddleware.RedirectIfUnauthorized(this, new[] { "Admin" });
                 // Ambil TransactionID dari query string
                 if (int.TryParse(Request.QueryString["TransactionID"], out int transactionId))
                 {

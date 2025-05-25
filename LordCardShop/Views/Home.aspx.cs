@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LordCardShop.Middleware;
 
 namespace LordCardShop.Views
 {
@@ -11,9 +12,10 @@ namespace LordCardShop.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "User", "Admin" });
             if (!IsPostBack)
             {
-                lblUsername.Text = "Kezia"; // dummy name
+                lblUsername.Text = HttpContext.Current.Session["Username"]?.ToString() ?? "Guest";
             }
         }
     }

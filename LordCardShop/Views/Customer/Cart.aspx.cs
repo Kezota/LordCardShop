@@ -4,6 +4,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Util;
 using LordCardShop.Controllers;
+using LordCardShop.Middleware;
 
 namespace LordCardShop.Views.Customer
 {
@@ -11,6 +12,7 @@ namespace LordCardShop.Views.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "User", "Admin" });
             if (!IsPostBack)
             {
                 LoadCart();

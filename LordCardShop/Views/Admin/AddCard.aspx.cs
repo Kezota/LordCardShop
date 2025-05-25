@@ -5,12 +5,16 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LordCardShop.Middleware;
 
 namespace LordCardShop.Views.Admin
 {
     public partial class AddCard : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e) { }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "Admin" });
+        }
 
         protected void BtnInsert_Click(object sender, EventArgs e)
         {

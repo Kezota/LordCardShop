@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LordCardShop.Middleware;
 
 namespace LordCardShop.Views.Admin
 {
@@ -13,6 +14,7 @@ namespace LordCardShop.Views.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "Admin" });
             if (!IsPostBack)
             {
                 Filter = Request.QueryString["statusFilter"] ?? "All";

@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LordCardShop.Middleware;
 
 namespace LordCardShop.Views
 {
@@ -16,6 +17,7 @@ namespace LordCardShop.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "User", "Admin" });
             if (!IsPostBack)
             {
                 LoadCards();

@@ -8,13 +8,13 @@ namespace LordCardShop.Middleware
     {
         public static bool IsLoggedIn(HttpSessionState session)
         {
-            return session["User"] != null && session["Role"] != null;
+            return session["User"] != null && session["UserRole"] != null;
         }
 
         public static bool IsInRole(HttpSessionState session, params string[] roles)
         {
             if (!IsLoggedIn(session)) return false;
-            string role = session["Role"].ToString();
+            string role = session["UserRole"].ToString();
             return roles.Contains(role);
         }
 
@@ -24,7 +24,7 @@ namespace LordCardShop.Middleware
 
             if (!IsLoggedIn(session) || !IsInRole(session, allowedRoles))
             {
-                page.Response.Redirect("~/Views/Unauthorized.aspx");
+                page.Response.Redirect("~/Views/Login.aspx");
             }
         }
     }

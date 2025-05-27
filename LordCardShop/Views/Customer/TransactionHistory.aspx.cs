@@ -3,6 +3,7 @@ using System.Web.UI;
 using LordCardShop.Controllers;
 using System.Web.UI.WebControls;
 using System.Web;
+using LordCardShop.Middleware;
 
 namespace LordCardShop.Views.Customer
 {
@@ -10,6 +11,7 @@ namespace LordCardShop.Views.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "customer" });
             if (!IsPostBack)
             {
                 LoadTransactionHistory();

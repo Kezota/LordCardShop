@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LordCardShop.Middleware;
 
 namespace LordCardShop.Views
 {
@@ -14,8 +15,10 @@ namespace LordCardShop.Views
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
+                RoleMiddleware.RedirectIfUnauthorized(this, new[] { "customer" });
                 int cardId;
                 if (int.TryParse(Request.QueryString["CardID"], out cardId))
                 {

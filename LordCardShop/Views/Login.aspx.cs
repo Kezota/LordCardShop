@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LordCardShop.Helpers;
 
 namespace LordCardShop.Views
 {
@@ -27,7 +28,15 @@ namespace LordCardShop.Views
             if (isSuccess)
             {
                 // Redirect to the home page or dashboard on successful login
-                Response.Redirect("Home.aspx");
+                var user = SessionHelper.GetCurrentUser();
+                if (user != null && user.UserRole == "admin")
+                {
+                    Response.Redirect("Home.aspx");
+                }
+                else
+                {
+                    Response.Redirect("Home.aspx");
+                }
             }
             else
             {

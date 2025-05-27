@@ -1,6 +1,7 @@
 ﻿using LordCardShop.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -12,8 +13,23 @@ namespace LordCardShop.Repositories
 
         public static void AddTransactionDetail(TransactionDetail detail)
         {
-            db.TransactionDetails.Add(detail);
-            db.SaveChanges();
+            //db.TransactionDetails.Add(detail);
+            //db.SaveChanges();
+
+            // Menyusun query SQL
+            string sql = "INSERT INTO TransactionDetail (TransactionID, CardID, Quantity) " +
+                         "VALUES (@TransactionID, @CardID, @Quantity)";
+
+            // Parameter yang dibutuhkan untuk query
+            var parameters = new[]
+            {
+                new SqlParameter("@TransactionID", detail.TransactionID),
+                new SqlParameter("@CardID", detail.CardID),
+                new SqlParameter("@Quantity", detail.Quantity),
+            };
+
+            // Menjalankan raw SQL query menggunakan ExecuteSqlCommand
+            db.Database.ExecuteSqlCommand(sql, parameters);
         }
 
         public static List<TransactionDetail> GetAllTransactionDetails()

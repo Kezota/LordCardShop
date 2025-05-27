@@ -35,9 +35,22 @@ namespace LordCardShop.Repositories
             return db.TransactionHeaders.FirstOrDefault(t => t.TransactionID == transactionId);
         }
 
-        public static List<TransactionHeader> GetTransactionByCustomerId(int customerId)
+        public static List<TransactionHistoryData> GetTransactionByCustomerId(int customerId)
         {
-            return db.TransactionHeaders.Where(t => t.CustomerID == customerId).ToList();
+            var transactions = (from th in db.TransactionHeaders
+                                join td in db.TransactionDetails on th.TransactionID equals td.TransactionID
+                                join c in db.Cards on td.CardID equals c.CardID
+                                where th.CustomerID == customerId // Filter berdasarkan UserID yang terkait dengan Card
+                                select new TransactionHistoryData
+                                {
+                                    TransactionID = th.TransactionID,
+                                    TransactionDate = th.TransactionDate,
+                                    Status = th.Status,
+                                    // Menghitung Subtotal berdasarkan Quantity dan CardPrice
+                                    Subtotal = td.Quantity * c.CardPrice
+                                }).ToList();
+
+            return transactions;
         }
 
         public static void UpdateTransactionHeader(TransactionHeader updatedHeader)

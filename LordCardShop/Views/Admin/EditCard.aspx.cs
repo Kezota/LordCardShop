@@ -1,10 +1,12 @@
-﻿using LordCardShop.Model;
+﻿using LordCardShop.Controllers;
+using LordCardShop.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LordCardShop.Middleware;
 
 namespace LordCardShop.Views.Admin
 {
@@ -14,6 +16,7 @@ namespace LordCardShop.Views.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "admin" });
             if (!IsPostBack)
             {
                 string idStr = Request.QueryString["CardID"];
@@ -30,31 +33,28 @@ namespace LordCardShop.Views.Admin
 
         protected void LoadCardData(int cardId)
         {
-            var dummyCards = new[]
-            {
-                new Card { CardID = 1, CardName = "Dragon Slayer", CardPrice = (float)100.0, CardType = "Attack", IsFoil = new byte[] { 1 } },
-                new Card { CardID = 2, CardName = "Phoenix Wing", CardPrice = (float)150.5, CardType = "Magic", IsFoil = new byte[] { 0 } },
-                new Card { CardID = 3, CardName = "Knight's Valor", CardPrice = (float)80.0, CardType = "Defense", IsFoil = new byte[] { 0 } }
-            };
+            var (isTrue, message, card) = CardController.ViewCard(cardId);
 
-            var card = Array.Find(dummyCards, c => c.CardID == cardId);
             if (card != null)
             {
                 TxtName.Text = card.CardName;
                 TxtPrice.Text = card.CardPrice.ToString();
+                TxtDescription.Text = card.CardDesc;
                 TxtType.Text = card.CardType;
                 TxtFoil.Text = (card.IsFoil != null && card.IsFoil.Length > 0 && card.IsFoil[0] == 1) ? "yes" : "no";
             }
             else
             {
-                ShowAlert("ummyCard not found.", false);
+                ShowAlert("Card not found.", false);
             }
         }
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
+            int cardId = int.Parse(Request.QueryString["CardID"]);
             string name = TxtName.Text.Trim();
             string priceStr = TxtPrice.Text.Trim();
+            string description = TxtDescription.Text.Trim();
             string type = TxtType.Text.Trim();
             string foil = TxtFoil.Text.Trim().ToLower();
 
@@ -62,6 +62,7 @@ namespace LordCardShop.Views.Admin
                 return;
 
             // Update database here
+            var (isTrue, message) = CardController.UpdateCard(cardId, name, float.Parse(priceStr), description, type, foil == "yes" ? "yes" : "no");
 
             ShowAlert("Card updated successfully!", true);
         }

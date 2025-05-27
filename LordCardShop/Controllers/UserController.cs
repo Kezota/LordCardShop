@@ -1,4 +1,5 @@
 ﻿using LordCardShop.Handlers;
+using LordCardShop.Helpers;
 using LordCardShop.Model;
 using System;
 using System.Collections.Generic;
@@ -21,15 +22,28 @@ namespace LordCardShop.Controllers
             }
         }
 
-        public static (bool, string) UpdateProfile(int userId, string newName, string newEmail, string newPassword, string oldPassword, string gender, DateTime dob)
+        public static (bool, string) UpdateProfile(string newName, string newEmail, string newPassword, string oldPassword, string gender, DateTime dob)
         {
             try
             {
-                return UserHandler.ProfileHandler(userId, newName, newEmail, newPassword, oldPassword, gender, dob);
+                return UserHandler.ProfileHandler(newName, newEmail, newPassword, oldPassword, gender, dob);
             }
             catch (Exception)
             {
                 return (false, "Gagal memperbarui profil.");
+            }
+        }
+
+        public static (bool, string, User) GetCurrentUser()
+        {
+            try
+            {
+                var user = SessionHelper.GetCurrentUser();
+                return (true, string.Empty, user);
+            }
+            catch (Exception)
+            {
+                return (false, "Gagal mengambil pengguna saat ini.", null);
             }
         }
     }

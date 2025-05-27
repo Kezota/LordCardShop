@@ -4,14 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LordCardShop.Middleware;
 
 namespace LordCardShop.Views
 {
-    public partial class HomePage : System.Web.UI.Page
+    public partial class Home : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "customer", "admin" });
+            if (!IsPostBack)
+            {
+                lblUsername.Text = HttpContext.Current.Session["Username"]?.ToString() ?? "Guest";
+            }
         }
     }
 }

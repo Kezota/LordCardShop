@@ -11,13 +11,17 @@
 
         <asp:Button ID="BtnAddCard" runat="server" Text="Add New Card" CssClass="btn btn-success mb-3" OnClick="BtnAddCard_Click" />
 
-        <asp:GridView ID="CardGridView" runat="server" CssClass="table table-bordered table-striped" AutoGenerateColumns="False" OnRowCommand="CardGridView_RowCommand">
+        <asp:GridView ID="CardGridView" runat="server" CssClass="table table-bordered table-striped" AutoGenerateColumns="False" OnRowCommand="CardGridView_RowCommand" OnRowDataBound="CardGridView_RowDataBound">
             <Columns>
                 <asp:BoundField DataField="CardID" HeaderText="ID" />
                 <asp:BoundField DataField="CardName" HeaderText="Name" />
                 <asp:BoundField DataField="CardPrice" HeaderText="Price" />
                 <asp:BoundField DataField="CardType" HeaderText="Type" />
-                <asp:BoundField DataField="IsFoil" HeaderText="Foil" />
+                <asp:TemplateField HeaderText="Is Foil">
+                    <ItemTemplate>
+                        <asp:Label ID="lblIsFoil" runat="server" Text='<%# Eval("IsFoil") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
 
                 <asp:TemplateField>
                     <ItemTemplate>
@@ -27,6 +31,7 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
+
     </div>
 </asp:Content>
 

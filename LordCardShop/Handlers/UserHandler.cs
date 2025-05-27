@@ -10,9 +10,9 @@ namespace LordCardShop.Handlers
 {
     public static class UserHandler
     {
-        public static (bool success, string errorMessage) ProfileHandler(int userId, string username, string email, string password, string oldPassword, string gender, DateTime dob)
+        public static (bool success, string errorMessage) ProfileHandler(string username, string email, string password, string oldPassword, string gender, DateTime dob)
         {
-            var user = UserRepository.GetUserById(userId);
+            var user = UserRepository.GetUserByUsername(username);
             if (user == null)
             {
                 return (false, "User not found.");
@@ -27,7 +27,7 @@ namespace LordCardShop.Handlers
             if (string.IsNullOrEmpty(gender))
                 return (false, "Gender must be chosen.");
 
-            if (!string.IsNullOrEmpty(password) && !PasswordHelper.VerifyPassword(oldPassword, user.UserPassword))
+            if (!PasswordHelper.VerifyPassword(oldPassword, user.UserPassword))
             {
                 return (false, "Old password is incorrect.");
             }

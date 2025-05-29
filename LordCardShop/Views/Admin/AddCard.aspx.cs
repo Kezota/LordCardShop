@@ -13,7 +13,7 @@ namespace LordCardShop.Views.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "Admin" });
+            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "admin" });
         }
 
         protected void BtnInsert_Click(object sender, EventArgs e)

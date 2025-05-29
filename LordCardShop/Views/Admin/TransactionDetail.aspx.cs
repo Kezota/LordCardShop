@@ -12,7 +12,7 @@ namespace LordCardShop.Views.Admin
         {
             if (!IsPostBack)
             {
-                RoleMiddleware.RedirectIfUnauthorized(this, new[] { "Admin" });
+                RoleMiddleware.RedirectIfUnauthorized(this, new[] { "admin" });
                 // Ambil TransactionID dari query string
                 if (int.TryParse(Request.QueryString["TransactionID"], out int transactionId))
                 {

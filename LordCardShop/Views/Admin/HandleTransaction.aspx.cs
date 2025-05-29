@@ -14,7 +14,7 @@ namespace LordCardShop.Views.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "Admin" });
+            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "admin" });
             if (!IsPostBack)
             {
                 Filter = Request.QueryString["statusFilter"] ?? "All";

@@ -12,7 +12,7 @@ namespace LordCardShop.Views.Customer
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "User", "Admin" });
+            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "customer" });
             if (!IsPostBack)
             {
                 LoadCart();

@@ -18,7 +18,7 @@ namespace LordCardShop.Views
             
             if (!IsPostBack)
             {
-                RoleMiddleware.RedirectIfUnauthorized(this, new[] { "User", "Admin" });
+                RoleMiddleware.RedirectIfUnauthorized(this, new[] { "customer" });
                 int cardId;
                 if (int.TryParse(Request.QueryString["CardID"], out cardId))
                 {

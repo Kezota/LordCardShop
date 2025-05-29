@@ -13,6 +13,9 @@ namespace LordCardShop.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(username) || username.Length < 5 || username.Length > 30) return (false, "Username must be between 5 and 30 characters.");
+                if (string.IsNullOrEmpty(password) || password.Length < 8 || !password.Any(char.IsLetterOrDigit))
+                    return (false, "Password must be at least 8 characters long and alphanumeric.");
                 return AuthHandler.Login(username, password, true);
             }
             catch (Exception)

@@ -14,6 +14,10 @@ namespace LordCardShop.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(username))
+                {
+                    return (false, "Username tidak boleh kosong.", null);
+                }
                 return UserHandler.GetProfile(username);
             }
             catch (Exception)
@@ -26,6 +30,10 @@ namespace LordCardShop.Controllers
         {
             try
             {
+                if (string.IsNullOrEmpty(newName) || string.IsNullOrEmpty(newEmail) || string.IsNullOrEmpty(oldPassword))
+                {
+                    return (false, "Data tidak lengkap.");
+                }
                 return UserHandler.ProfileHandler(newName, newEmail, newPassword, oldPassword, gender, dob);
             }
             catch (Exception)
@@ -38,6 +46,10 @@ namespace LordCardShop.Controllers
         {
             try
             {
+                if (SessionHelper.GetCurrentUser() == null)
+                {
+                    return (false, "Pengguna tidak ditemukan dalam sesi.", null);
+                }
                 var user = SessionHelper.GetCurrentUser();
                 return (true, string.Empty, user);
             }

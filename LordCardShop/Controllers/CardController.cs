@@ -11,6 +11,10 @@ namespace LordCardShop.Controllers
         {
             try
             {
+                if (cardId <= 0)
+                {
+                    return (false, "ID Card tidak valid", null);
+                }
                 return (true, "Card info berhasil diambil", CardHandler.GetCardDetail(cardId));
             }
             catch (Exception)
@@ -23,6 +27,10 @@ namespace LordCardShop.Controllers
         {
             try
             {
+                if (CardHandler.GetAllCardsForCustomer() == null || CardHandler.GetAllCardsForCustomer().Count == 0)
+                {
+                    return (false, "Tidak ada Card yang tersedia", null);
+                }
                 return (true, "Cards Info List berhasil diambil", CardHandler.GetAllCardsForCustomer());
             }
             catch (Exception)
@@ -35,6 +43,26 @@ namespace LordCardShop.Controllers
         {
             try
             {
+                if (cardId <= 0)
+                {
+                    return (false, "ID Card tidak valid");
+                }
+                if (string.IsNullOrEmpty(name) || price <= 0 || string.IsNullOrEmpty(description) || string.IsNullOrEmpty(type))
+                {
+                    return (false, "Data Card tidak lengkap");
+                }
+                if (foil != "Yes" && foil != "No")
+                {
+                    return (false, "Data Foil tidak valid");
+                }
+                if (foil == "Yes")
+                {
+                    foil = "True";
+                }
+                else
+                {
+                    foil = "False";
+                }
                 ManageCardHandler.UpdateCard(cardId, name, price, description, type, foil);
                 return (true, "Card berhasil diupdate");
             }
@@ -48,6 +76,10 @@ namespace LordCardShop.Controllers
         {
             try
             {
+                if (idCard <= 0)
+                {
+                    return (false, "ID Card tidak valid");
+                }
                 CardHandler.DeleteCard(idCard);
                 return (true, "Card berhasil dihapus");
             }
@@ -61,7 +93,11 @@ namespace LordCardShop.Controllers
         {
             try
             {
-                var (newCard, message) = ManageCardHandler.InsertNewCard(name, price, description, type, foil);
+                if (string.IsNullOrEmpty(name) || price <= 0 || string.IsNullOrEmpty(description) || string.IsNullOrEmpty(type))
+                {
+                    return (false, "Data Card tidak lengkap");
+                }
+                ManageCardHandler.InsertNewCard(name, price, description, type, foil);
                 return (true, "Berhasil menambahkan Card");
             }
             catch (Exception)

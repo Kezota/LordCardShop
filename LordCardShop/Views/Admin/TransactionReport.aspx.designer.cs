@@ -22,19 +22,5 @@ namespace LordCardShop.Views.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal LiteralReport;
-
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new LordCardShop.Views.AppLayout Master
-        {
-            get
-            {
-                return ((LordCardShop.Views.AppLayout)(base.Master));
-            }
-        }
     }
 }

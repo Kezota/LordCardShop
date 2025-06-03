@@ -9,7 +9,4 @@
             <strong>Grand Total Income:</strong> <%= GrandTotal %>
         </div>
     </div>
-    <div>
-        FIX SOME SHIT
-    </div>
 </asp:Content>

@@ -17,16 +17,23 @@ namespace LordCardShop.Views.Admin
             RoleMiddleware.RedirectIfUnauthorized(this, new[] { "admin" });
             if (!IsPostBack)
             {
-                LoadCards();
+                string search = Request.QueryString["search"];
+                LoadCards(search);
             }
         }
 
-        private void LoadCards()
+        private void LoadCards(string search = null)
         {
             var (isTrue, message, cards) = CardController.GetAllCards();
 
             if (isTrue)
             {
+                if (!string.IsNullOrEmpty(search))
+                {
+                    cards = cards
+                        .Where(c => c.CardName != null && c.CardName.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0)
+                        .ToList();
+                }
                 CardGridView.DataSource = cards;
                 CardGridView.DataBind();
             }
@@ -61,10 +68,12 @@ namespace LordCardShop.Views.Admin
                 }
 
                 ShowAlert("Card deleted successfully!", true);
-                LoadCards(); // refresh
+                // Refresh with current search filter
+                string search = Request.QueryString["search"];
+                LoadCards(search);
             }
         }
-        
+
         protected void CardGridView_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -85,7 +94,6 @@ namespace LordCardShop.Views.Admin
                 }
             }
         }
-
 
         private void ShowAlert(string message, bool isSuccess)
         {

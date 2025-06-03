@@ -27,5 +27,14 @@ namespace LordCardShop.Views
             // Redirect ke halaman login
             Response.Redirect("~/Views/Login.aspx");
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            var searchTerm = txtSearchCard.Text.Trim();
+            if (!string.IsNullOrEmpty(searchTerm))
+                Response.Redirect("/Views/Admin/ManageCard.aspx?search=" + Server.UrlEncode(searchTerm));
+            else
+                Response.Redirect("/Views/Admin/ManageCard.aspx");
+        }
     }
 }

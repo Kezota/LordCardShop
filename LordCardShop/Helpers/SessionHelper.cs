@@ -14,6 +14,7 @@ namespace LordCardShop.Helpers
             if (user != null)
             {
                 HttpContext.Current.Session["User"] = user; // Simpan user di session
+                HttpContext.Current.Session["Username"] = user.UserName; // Simpan user di session
                 HttpContext.Current.Session["UserID"] = user.UserID; // Simpan ID user di session
                 HttpContext.Current.Session["UserRole"] = user.UserRole; // Simpan role user di session
                 HttpContext.Current.Session.Timeout = 60; // Set timeout session ke 60 menit

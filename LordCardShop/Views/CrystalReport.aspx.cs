@@ -17,11 +17,11 @@ namespace LordCardShop.Views
         {
             CrystalReport report = new CrystalReport();
             CrystalReportViewer1.ReportSource = report;
-            ModelDataset data = getData(ReportingHandler.GetAllTransactions()); 
-            report.SetDataSource(data);
+            TransactionDataset data = new TransactionDataset();
+            // Dataset data = getData(ReportingHandler.GetAllTransactions());/**/
         }
 
-        private ModelDataset getData(List<TransactionDetail> transactions)
+        /*private ModelDataset getData(List<TransactionDetail> transactions)
         {
             ModelDataset data = new ModelDataset();
             var headerTable = data.TransactionHeader;
@@ -46,6 +46,6 @@ namespace LordCardShop.Views
                 }
             }
             
-        }
+        }*/
     }
 }

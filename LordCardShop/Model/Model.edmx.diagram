@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c45394a3ce914613826824c80f472db5" Name="Diagram1">
+      <Diagram DiagramId="c45394a3ce914613826824c80f472db5" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="DatabaseModel.Card" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Cart" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.TransactionHeader" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.User" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.User" Width="1.5" PointX="0.875" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.TransactionDetail" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="DatabaseModel.FK__Carts__CardID__534D60F1" ManuallyRouted="false" />
         <AssociationConnector Association="DatabaseModel.FK__Transacti__CardI__5070F446" ManuallyRouted="false" />

@@ -1,0 +1,9 @@
+Username and password for Login:
+
+Customer
+Username: Kezia
+Password: Kezia123
+
+Admin
+Username: Admin2
+Password: Admin123

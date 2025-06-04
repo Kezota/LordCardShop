@@ -328,14 +328,14 @@
                             <li class="nav-item"><a class="nav-link" href="/Views/Admin/TransactionReport.aspx">Report</a></li>
                             <li class="nav-item"><a class="nav-link" href="/Views/Admin/HandleTransaction.aspx">Order Queue</a></li>
                             <li class="nav-item"><a class="nav-link" href="/Views/Customer/Profile.aspx">Profile</a></li>
-                            <!-- Search Box -->
-                            <li class="nav-item d-flex align-items-center">
-                                <asp:TextBox ID="txtSearchCard" runat="server" CssClass="form-control me-2" placeholder="Search card..."></asp:TextBox>
-                                <asp:Button ID="btnSearchCard" runat="server" Text="Search" CssClass="btn btn-outline-light" OnClick="btnSearch_Click" />
-                            </li>
                             <% End If %>
 
                         <li class="nav-item"><asp:LinkButton ID="logout_btn" runat="server" OnClick="Logout_Click" CssClass="nav-link">Logout</asp:LinkButton></li>
+                        <!-- Search Box -->
+                        <li class="nav-item d-flex align-items-center">
+                            <asp:TextBox ID="txtSearchCard" runat="server" CssClass="form-control me-2" placeholder="Search card..."></asp:TextBox>
+                            <asp:Button ID="btnSearchCard" runat="server" Text="Search" CssClass="btn btn-outline-light" OnClick="btnSearch_Click" />
+                        </li>
                         <% Else %>
                         <li class="nav-item"><a class="nav-link" href="/Views/Login.aspx">Login</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Views/Register.aspx">Sign up</a></li>

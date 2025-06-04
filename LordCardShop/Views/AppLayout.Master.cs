@@ -30,11 +30,24 @@ namespace LordCardShop.Views
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            string userRole = Session["UserRole"]?.ToString();
             var searchTerm = txtSearchCard.Text.Trim();
-            if (!string.IsNullOrEmpty(searchTerm))
-                Response.Redirect("/Views/Admin/ManageCard.aspx?search=" + Server.UrlEncode(searchTerm));
-            else
-                Response.Redirect("/Views/Admin/ManageCard.aspx");
+
+            if (userRole == "admin")
+            {
+                if (!string.IsNullOrEmpty(searchTerm))
+                    Response.Redirect("/Views/Admin/ManageCard.aspx?search=" + Server.UrlEncode(searchTerm));
+                else
+                    Response.Redirect("/Views/Admin/ManageCard.aspx");
+            }
+            else if (userRole == "customer")
+            {
+                if (!string.IsNullOrEmpty(searchTerm))
+                    Response.Redirect("/Views/Customer/OrderCard.aspx?search=" + Server.UrlEncode(searchTerm));
+                else
+                    Response.Redirect("/Views/Customer/OrderCard.aspx");
+            }
         }
+
     }
 }

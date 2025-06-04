@@ -3,10 +3,8 @@ using LordCardShop.Model;
 using LordCardShop.Views.Customer;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Metadata.Edm;
 using System.Linq;
 using System.Web;
-using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using LordCardShop.Middleware;
@@ -26,7 +24,16 @@ namespace LordCardShop.Views
 
         private void LoadCards()
         {
+            string searchTerm = Request.QueryString["search"];
             var (isTrue, message, cards) = CardController.GetAllCards();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                // Assuming Card has a Name property, adjust as needed
+                cards = cards
+                    .Where(card => card.CardName.IndexOf(searchTerm, StringComparison.OrdinalIgnoreCase) >= 0)
+                    .ToList();
+            }
 
             CardRepeater.DataSource = cards;
             CardRepeater.DataBind();
@@ -34,16 +41,12 @@ namespace LordCardShop.Views
 
         protected void CardRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            // Mendapatkan CardID dari CommandArgument
             int cardId = Convert.ToInt32(e.CommandArgument);
-
-            // Mengambil UserID dari session
             int userId = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
 
             if (e.CommandName == "AddToCart")
             {
-                // Menambahkan kartu ke keranjang
-                var (isSuccess, message) = CartController.AddCardToCart(userId, cardId, 1); // Quantity default 1
+                var (isSuccess, message) = CartController.AddCardToCart(userId, cardId, 1);
 
                 if (isSuccess)
                 {
@@ -66,6 +69,5 @@ namespace LordCardShop.Views
             AlertMessage.Text = message;
             AlertPanel.Visible = true;
         }
-
     }
 }

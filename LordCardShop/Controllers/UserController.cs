@@ -30,7 +30,7 @@ namespace LordCardShop.Controllers
         {
             try
             {
-                if (string.IsNullOrEmpty(newName) || string.IsNullOrEmpty(newEmail) || string.IsNullOrEmpty(oldPassword))
+                if (string.IsNullOrEmpty(newName) || string.IsNullOrEmpty(newEmail))
                 {
                     return (false, "Data tidak lengkap.");
                 }

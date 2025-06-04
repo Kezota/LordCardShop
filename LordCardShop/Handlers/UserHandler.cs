@@ -22,12 +22,12 @@ namespace LordCardShop.Handlers
                 return (false, "Username must be between 5 and 30 characters.");
             if (!email.Contains("@"))
                 return (false, "Email must be valid.");
-            if (password.Length < 8 || !password.Any(char.IsLetterOrDigit))
+            if ((password.Length < 8 || !password.Any(char.IsLetterOrDigit)) && !string.IsNullOrEmpty(password))
                 return (false, "Password must be at least 8 characters long and alphanumeric.");
             if (string.IsNullOrEmpty(gender))
                 return (false, "Gender must be chosen.");
 
-            if (!PasswordHelper.VerifyPassword(oldPassword, user.UserPassword))
+            if (!PasswordHelper.VerifyPassword(oldPassword, user.UserPassword) && !string.IsNullOrEmpty(password))
             {
                 return (false, "Old password is incorrect.");
             }

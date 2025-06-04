@@ -72,12 +72,30 @@ namespace LordCardShop.Views.Customer
                 ShowError("Email must contain '@'.");
                 return;
             }
-
-            if (!Regex.IsMatch(password, @"^[A-Za-z0-9]{8,}$"))
+            if (!string.IsNullOrEmpty(password))
             {
-                ShowError("Password must be at least 8 characters and alphanumeric.");
-                return;
+
+                if (!Regex.IsMatch(password, @"^[A-Za-z0-9]{8,}$"))
+                {
+                    ShowError("Password must be at least 8 characters and alphanumeric.");
+                    return;
+                }
+                if (!string.IsNullOrEmpty(txtNewPassword.Text))
+                {
+                    if (!Regex.IsMatch(txtNewPassword.Text, @"^[A-Za-z0-9]{8,}$"))
+                    {
+                        ShowError("New password must be at least 8 characters and alphanumeric.");
+                        return;
+                    }
+
+                    if (txtNewPassword.Text != txtConfirmPassword.Text)
+                    {
+                        ShowError("Confirmation password must match the new password.");
+                        return;
+                    }
+                }
             }
+
 
             if (string.IsNullOrEmpty(gender))
             {
@@ -86,20 +104,7 @@ namespace LordCardShop.Views.Customer
             }
 
             // New password logic
-            if (!string.IsNullOrEmpty(txtNewPassword.Text))
-            {
-                if (!Regex.IsMatch(txtNewPassword.Text, @"^[A-Za-z0-9]{8,}$"))
-                {
-                    ShowError("New password must be at least 8 characters and alphanumeric.");
-                    return;
-                }
-
-                if (txtNewPassword.Text != txtConfirmPassword.Text)
-                {
-                    ShowError("Confirmation password must match the new password.");
-                    return;
-                }
-            }
+            
 
             // Simulate update
             string newPassword = string.IsNullOrEmpty(txtNewPassword.Text) ? password : txtNewPassword.Text;

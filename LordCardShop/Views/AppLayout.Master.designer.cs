@@ -24,6 +24,15 @@ namespace LordCardShop.Views
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// logout_btn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton logout_btn;
+
+        /// <summary>
         /// txtSearchCard control.
         /// </summary>
         /// <remarks>
@@ -40,15 +49,6 @@ namespace LordCardShop.Views
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearchCard;
-
-        /// <summary>
-        /// logout_btn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton logout_btn;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

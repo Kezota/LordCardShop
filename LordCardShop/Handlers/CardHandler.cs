@@ -49,7 +49,7 @@ namespace LordCardShop.Handlers
             var card = CardRepository.GetCardById(cardId);
             if (card != null)
             {
-                CardRepository.DeleteCard(card);
+                CardRepository.DeleteCardById(cardId);
             }
             else
             {

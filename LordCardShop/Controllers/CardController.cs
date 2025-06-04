@@ -51,17 +51,9 @@ namespace LordCardShop.Controllers
                 {
                     return (false, "Data Card tidak lengkap");
                 }
-                if (foil != "Yes" && foil != "No")
+                if (foil != "Yes" && foil != "No" && foil != "yes" && foil != "no")
                 {
                     return (false, "Data Foil tidak valid");
-                }
-                if (foil == "Yes")
-                {
-                    foil = "True";
-                }
-                else
-                {
-                    foil = "False";
                 }
                 ManageCardHandler.UpdateCard(cardId, name, price, description, type, foil);
                 return (true, "Card berhasil diupdate");

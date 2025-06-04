@@ -26,7 +26,7 @@
             <asp:TextBox ID="TxtType" runat="server" CssClass="form-control" />
         </div>
         <div class="form-group">
-            <label>Foil (Yes/No)</label>
+            <label>Foil (yes/no)</label>
             <asp:TextBox ID="TxtFoil" runat="server" CssClass="form-control" />
         </div>
 

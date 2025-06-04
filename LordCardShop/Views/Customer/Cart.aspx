@@ -21,7 +21,7 @@
                     <div class="col-md-2">Rp <%# Eval("CardPrice") %></div>
                     <div class="col-md-4"><%# Eval("CardType") %></div>
                     <div class="col-md-2">
-                        <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" Text='<%# Eval("Quantity") %>' />
+                        <asp:TextBox ID="txtQuantity" runat="server" CssClass="form-control" Text='<%# Eval("Quantity") %>' Enabled="false" />
                     </div>
                     <div class="col-md-2">
                         <!-- Tombol untuk menambah quantity -->

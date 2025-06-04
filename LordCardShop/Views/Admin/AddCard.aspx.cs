@@ -28,7 +28,7 @@ namespace LordCardShop.Views.Admin
                 return;
 
             // Insert to database here
-            var (isTrue, message) = CardController.AddCard(name, float.Parse(priceStr), "Dummy Description", type, foil == "yes" ? "yes" : "no");
+            var (isTrue, message) = CardController.AddCard(name, float.Parse(priceStr), "Dummy Description", type, foil);
 
             if (!isTrue)
             {

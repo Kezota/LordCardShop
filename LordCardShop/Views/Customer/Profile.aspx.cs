@@ -18,7 +18,7 @@ namespace LordCardShop.Views.Customer
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "customer" });
+            RoleMiddleware.RedirectIfUnauthorized(this, new[] { "customer", "admin" });
             if (!IsPostBack)
             {
                 var (isSuccess, message, user) = UserController.GetCurrentUser();

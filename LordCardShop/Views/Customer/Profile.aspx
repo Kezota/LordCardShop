@@ -10,7 +10,7 @@
             <div class="col-md-6">
                 <div class="mb-3">
                     <label for="txtUsername" class="form-label">Username</label>
-                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" />
+                    <asp:TextBox ID="txtUsername" runat="server" CssClass="form-control" Enabled="false" />
                 </div>
 
                 <div class="mb-3">

@@ -232,7 +232,6 @@
     </Compile>
     <Compile Include="Views\CrystalReport.aspx.cs">
       <DependentUpon>CrystalReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\CrystalReport.aspx.designer.cs">
       <DependentUpon>CrystalReport.aspx</DependentUpon>

@@ -22,7 +22,6 @@
                         <asp:Label ID="lblIsFoil" runat="server" Text='<%# Eval("IsFoil") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-
                 <asp:TemplateField>
                     <ItemTemplate>
                         <asp:Button ID="BtnUpdate" runat="server" CommandName="UpdateCard" CommandArgument='<%# Eval("CardID") %>' Text="Update" CssClass="btn btn-primary btn-sm" />
@@ -31,7 +30,5 @@
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
-
     </div>
 </asp:Content>
-

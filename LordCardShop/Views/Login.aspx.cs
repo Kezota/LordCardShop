@@ -31,7 +31,7 @@ namespace LordCardShop.Views
                 var user = SessionHelper.GetCurrentUser();
                 if (user != null && user.UserRole == "admin")
                 {
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("Admin/ManageCard.aspx");
                 }
                 else
                 {
